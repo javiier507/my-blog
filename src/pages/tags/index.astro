@@ -1,0 +1,38 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const posts = await getCollection('blog');
+
+// Get all unique tags
+const allTags = [...new Set(posts.flatMap(post => post.data.tags))].sort();
+
+// Count posts for each tag
+const tagCounts = allTags.map(tag => {
+  const count = posts.filter(post => post.data.tags.includes(tag)).length;
+  return { tag, count };
+});
+---
+
+<Layout title="All Tags - DevBlog">
+  <section class="max-w-4xl mx-auto">
+    <h1 class="text-4xl font-bold mb-8">Browse by Tag</h1>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-2">
+      {tagCounts.map(({ tag, count }) => (
+        <a 
+          href={`/tags/${tag}`}
+          class="bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg shadow p-6 flex items-center justify-between hover:shadow-md transition-shadow group"
+        >
+          <div class="flex items-center">
+            <span class="text-slate-900 dark:text-white mr-2">#</span>
+            <span class="font-medium text-slate-900 dark:text-white">{tag}</span>
+          </div>
+          <span class="bg-sky-100 text-sky-800 dark:bg-sky-900 dark:text-sky-100 text-xs px-3 py-1 rounded-full transition-colors">
+            {count} {count === 1 ? 'post' : 'posts'}
+          </span>
+        </a>
+      ))}
+    </div>
+  </section>
+</Layout>

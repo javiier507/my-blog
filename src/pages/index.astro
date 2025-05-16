@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import Jumbotron from '../components/Jumbotron.astro';
+import PostCard from '../components/PostCard.astro';
+
+const posts = await getCollection('blog', ({ data }) => {
+  return import.meta.env.PROD ? !data.draft : true;
+});
+
+// Sort posts by date (newest first)
+const sortedPosts = posts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+---
+
+<Layout title="DevBlog - A Blog for Developers">
+  <Jumbotron />
+  
+  <section id="posts" class="mb-16">
+    <h2 class="text-3xl font-bold mb-8">Latest Posts</h2>
+    
+    <div class="grid gap-8">
+      {sortedPosts.map((post) => (
+        <PostCard
+          title={post.data.title}
+          description={post.data.description}
+          date={post.data.date}
+          tags={post.data.tags}
+          url={`/blog/${post.slug}/`}
+        />
+      ))}
+    </div>
+  </section>
+</Layout>
