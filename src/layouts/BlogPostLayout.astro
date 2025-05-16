@@ -16,7 +16,7 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
 ---
 
 <Layout title={title} description={description}>
-  <article class="max-w-3xl mx-auto animate-fade-in">
+  <article class="max-w-4xl mx-auto animate-fade-in">
     <div class="mb-8">
       <h1 class="text-4xl font-bold mb-4">{title}</h1>
       <div class="flex flex-wrap items-center text-sm text-slate-600 gap-y-2">
@@ -54,6 +54,11 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
   .prose {
     max-width: 65ch;
     color: #334155;
+  }
+  
+  /* Mejorar legibilidad en modo oscuro para el texto del artículo */
+  :global(html.dark) .prose {
+    color: #e5e7eb;
   }
   
   .prose h2 {
