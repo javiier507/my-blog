@@ -8,7 +8,7 @@ interface Props {
 
 const { post } = Astro.props;
 const { title, date, author, tags, description } = post.data;
-const formattedDate = new Date(date).toLocaleDateString('en-US', {
+const formattedDate = new Date(date).toLocaleDateString('es-ES', {
   year: 'numeric',
   month: 'long',
   day: 'numeric',
