@@ -20,7 +20,7 @@ const { posts } = Astro.props;
 const sortedPosts = posts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 ---
 
-<Layout title={`#${tag} - LoremCode`}>
+<Layout title={`#${tag} - Lorem Code`}>
   <section class="max-w-4xl mx-auto">
     <div class="mb-8">
       <a href="/tags" class="text-primary-600 hover:text-primary-800 flex items-center mb-4">
