@@ -22,6 +22,13 @@ const { title, description = "A developer blog about coding and technology" } = 
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <title>{title}</title>
+    <!-- OpenGraph Meta Tags -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/logo.png" />
+    <meta property="og:url" content={Astro.url ? Astro.url.pathname : ''} />
+    <meta property="og:locale" content="es_ES" />
     <script>
       // Check for dark mode preference
       if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
