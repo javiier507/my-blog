@@ -1,0 +1,5 @@
+/* Padding y estilos para bloques de código generados por Shiki/Astro */
+.astro-code, pre {
+  padding: 1rem;
+  border-radius: 0.5rem;
+}

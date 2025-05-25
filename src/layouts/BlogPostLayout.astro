@@ -96,13 +96,15 @@ const formattedDate = new Date(date).toLocaleDateString('es-ES', {
     color: #1d4ed8;
   }
   
-  .prose pre {
+  .prose pre,
+.astro-code,
+pre {
     background-color: #1e293b;
     color: #f8fafc;
     padding: 1rem;
     border-radius: 0.5rem;
     overflow-x: auto;
-  }
+}
   
   .prose code {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
